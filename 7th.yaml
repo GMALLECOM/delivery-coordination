@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: G-Mall Delivery API
+  version: 1.0.0
+
+paths:
+  /v1/delivery/{delivery_id}:
+    get:
+      description: Get information about a delivery with the given delivery_id
+      parameters:
+        - name: delivery_id
+          in: path
+          description: ID of the delivery to retrieve
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Delivery information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delivery_id:
+                    type: integer
+                  delivery_address:
+                    type: string
+                  delivery_status:
+                    type: string
+                  delivery_date:
+                    type: string
+                  delivery_time:
+                    type: string
+
+  /delivery/{delivery_id}/status:
+    get:
+      description: Get the status of a delivery with the given delivery_id
+      parameters:
+        - name: delivery_id
+          in: path
+          description: ID of the delivery to retrieve status
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Delivery status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delivery_status:
+                    type: string
+
+  /notifications/{notification_id}:
+    get:
+      description: Get information about a notification with the given notification_id
+      parameters:
+        - name: notification_id
+          in: path
+          description: ID of the notification to retrieve
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Notification information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notification_id:
+                    type: integer
+                  notification_type:
+                    type: string
+                  delivery_id:
+                    type: integer
+                  message:
+                    type: string
+                  notification_date:
+                    type: string
+                  notification_time:
+                    type: string

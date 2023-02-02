@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  title: G-Mall API
+  version: 1.0.0
+servers:
+  - url: https://api.g-mall.com/v1
+paths:
+  /inventory/{product_id}:
+    get:
+      summary: Retrieve information for a single product
+      parameters:
+        - in: path
+          name: product_id
+          description: The unique identifier for the product
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Information for the specified product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The unique identifier for the product
+                  name:
+                    type: string
+                    description: The name of the product
+                  description:
+                    type: string
+                    description: A description of the product
+                  price:
+                    type: number
+                    description: The price of the product
+        404:
+          description: Product not found
+  /inventory/products/{product_id}:
+    get:
+      summary: Retrieve information for a single product
+      parameters:
+        - in: path
+          name: product_id
+          description: The unique identifier for the product
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Information for the specified product
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The unique identifier for the product
+                  name:
+                    type: string
+                    description: The name of the product
+                  description:
+                    type: string
+                    description: A description of the product
+                  price:
+                    type: number
+                    description: The price of the product
+        404:
+          description: Product not found
+  /inventory/products:
+    get:
+      summary: Retrieve information for all products
+      parameters:
+        - in: query
+          name: limit
+          description: Maximum number of products to retrieve
+          schema:
+            type: integer
+      responses:
+        200:
+          description: List of all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The unique identifier for the product
+                    name:
+                      type: string
+                      description: The name of the product
+                    description:
+                      type: string
+                      description: A description of the product
+                    price:
+                      type: number
+                      description: The price of the product
