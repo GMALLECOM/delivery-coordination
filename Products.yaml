@@ -1,0 +1,319 @@
+openapi: 3.0.0
+info:
+  title: G-Mall API
+  version: 1.0.0
+servers:
+  - url: https://api.g-mall.com/v1
+paths:
+  /api/prov/v1/accounts:
+  get:
+    description: Retrieve all accounts
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Account'
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/prov/v2/accounts:
+  post:
+    description: Create a new account
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/components/schemas/Account'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      400:
+        description: Bad Request
+      401:
+        description: Unauthorized
+      409:
+        description: Conflict
+
+  /api/prov/v1/accounts/{account_id}:
+  delete:
+    description: Delete an account by ID
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - name: account_id
+        in: path
+        schema:
+          type: string
+        required: true
+    responses:
+      204:
+        description: No Content
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/prov/v2/accounts/{account_id}:
+    put:
+      description: Update an account by ID
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: account_id
+          in: path
+          schema:
+            type: string
+          required: true
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/components/schemas/Account'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        404:
+          description: Not Found
+  /api/prov/v1/products:
+  get:
+    description: Retrieve a list of products
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+      401:
+        description: Unauthorized
+  /api/prov/v2/products:
+  post:
+    description: Create a new product
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/components/schemas/Product'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      400:
+        description: Bad Request
+      401:
+        description: Unauthorized
+  /api/prov/v1/products/{product_id}:
+  delete:
+    description: Delete a product by ID
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - name: product_id
+        in: path
+        schema:
+          type: string
+        required: true
+    responses:
+      204:
+        description: No Content
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/prov/v2/products/{product_id}:
+  put:
+    description: Update a product by ID
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - name: product_id
+        in: path
+        schema:
+          type: string
+        required: true
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/components/schemas/Product'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      400:
+        description: Bad Request
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/shop/v1/products:
+  get:
+    description: Retrieve a list of all products
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+      401:
+        description: Unauthorized
+  /api/shop/v2/products:
+  post:
+    description: Create a new product
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/components/schemas/Product'
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      400:
+        description: Bad Request
+      401:
+        description: Unauthorized
+  /api/shop/v1/products/{product_id}:
+  delete:
+    description: Delete a product by ID
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - name: product_id
+        in: path
+        schema:
+          type: string
+        required: true
+    responses:
+      204:
+        description: No Content
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/shop/v2/products/{product_id}:
+  put:
+    description: Update a product by ID
+    parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+        required: true
+      - name: product_id
+        in: path
+        schema:
+          type: string
+        required: true
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/components/schemas/Product'
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      400:
+        description: Bad Request
+      401:
+        description: Unauthorized
+      404:
+        description: Not Found
+  /api/shop/v1/products:
+  options:
+    description: Retrieve supported HTTP methods for the products endpoint
+    deprecated: true
+    responses:
+      200:
+        description: OK
+        headers:
+          Allow:
+            description: List of supported HTTP methods
+            schema:
+              type: string
+
