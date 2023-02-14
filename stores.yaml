@@ -17,23 +17,52 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: A list of outlets
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Outlet'
-        '400':
+                  $ref: "#/components/schemas/Outlet"
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Not found
-  /api/prov/v1/outlets/{outlet_id}:
+    post:
+      summary: Create a new outlet
+      description: Creates a new outlet
+      operationId: createOutlet
+      parameters:
+        - in: header
+          name: X-API-Key
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Outlet"
+      responses:
+        "201":
+          description: Outlet created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Outlet"
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/prov/v1/outlets/{outlet_id}":
     get:
       summary: Get a specific outlet by ID
       description: Returns a specific outlet based on its ID
@@ -50,51 +79,20 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: The requested outlet
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Outlet'
-        '400':
+                $ref: "#/components/schemas/Outlet"
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Outlet not found
-  /api/prov/v1/outlets:
-    post:
-      summary: Create a new outlet
-      description: Creates a new outlet
-      operationId: createOutlet
-      parameters:
-        - in: header
-          name: X-API-Key
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Outlet'
-      responses:
-        '201':
-          description: Outlet created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Outlet'
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-  /api/prov/v1/outlets/{outlet_id}:
     put:
       summary: Update an existing outlet
       description: Updates an existing outlet based on its ID
@@ -115,24 +113,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Outlet'
+              $ref: "#/components/schemas/Outlet"
       responses:
-        '200':
+        "200":
           description: Outlet updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Outlet'
-        '400':
+                $ref: "#/components/schemas/Outlet"
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Outlet not found
-  /api/prov/v1/outlets/{outlet_id}:
-    put:
+    options:
       summary: Update an existing outlet
       description: Updates an existing outlet based on its ID
       operationId: updateOutlet
@@ -153,50 +150,48 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Outlet'
+              $ref: "#/components/schemas/Outlet"
       responses:
-        '200':
+        "200":
           description: Outlet updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Outlet'
-        '400':
+                $ref: "#/components/schemas/Outlet"
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Outlet not found
-  paths:
-  /api/prov/v1/outlets/{outlet_id}:
-    delete:
-      summary: Delete an existing outlet
-      description: Deletes an existing outlet based on its ID
-      operationId: deleteOutlet
-      parameters:
-        - in: header
-          name: X-API-Key
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: outlet_id
-          required: true
-          schema:
-            type: integer
-      responses:
-        '204':
-          description: Outlet deleted
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Outlet not found
+      delete:
+        summary: Delete an existing outlet
+        description: Deletes an existing outlet based on its ID
+        operationId: deleteOutlet
+        parameters:
+          - in: header
+            name: X-API-Key
+            required: true
+            schema:
+              type: string
+          - in: path
+            name: outlet_id
+            required: true
+            schema:
+              type: integer
+        responses:
+          "204":
+            description: Outlet deleted
+          "400":
+            description: Bad request
+          "401":
+            description: Unauthorized
+          "403":
+            description: Forbidden
+          "404":
+            description: Outlet not found
   /api/prov/v1/brands:
     get:
       summary: Get all brands
@@ -209,19 +204,48 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of brands
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Brand'
-        '401':
+                  $ref: "#/components/schemas/Brand"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-  /api/prov/v1/brands/{brand_id}:
+    post:
+      summary: Create a new brand
+      description: Creates a new brand with the information provided
+      operationId: createBrand
+      parameters:
+        - in: header
+          name: X-API-Key
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Brand"
+      responses:
+        "201":
+          description: Brand created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Brand"
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+  "/api/prov/v1/brands/{brand_id}":
     get:
       summary: Get a brand by ID
       description: Returns a brand based on its ID
@@ -239,49 +263,18 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: Brand information
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Brand'
-        '401':
+                $ref: "#/components/schemas/Brand"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Brand not found
-  /api/prov/v1/brands:
-    post:
-      summary: Create a new brand
-      description: Creates a new brand with the information provided
-      operationId: createBrand
-      parameters:
-        - in: header
-          name: X-API-Key
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Brand'
-      responses:
-        '201':
-          description: Brand created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Brand'
-        '400':
-          description: Bad request
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-  /api/prov/v1/brands/{brand_id}:
     put:
       summary: Update a brand
       description: Updates the information of an existing brand
@@ -302,23 +295,22 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Brand'
+              $ref: "#/components/schemas/Brand"
       responses:
-        '200':
+        "200":
           description: Brand updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Brand'
-        '400':
+                $ref: "#/components/schemas/Brand"
+        "400":
           description: Bad request
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Brand not found
-  /api/prov/v1/brands/{brand_id}:
     delete:
       summary: Delete a brand
       description: Deletes an existing brand
@@ -335,13 +327,13 @@ paths:
           schema:
             type: integer
       responses:
-        '204':
+        "204":
           description: Brand deleted
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Brand not found
   /api/prov/v1/products:
     get:
@@ -355,19 +347,19 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: Products retrieved
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
-        '401':
+                  $ref: "#/components/schemas/Product"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-  /api/prov/v1/products/{product_id}:
+  "/api/prov/v1/products/{product_id}":
     get:
       summary: Get a product
       description: Returns the product with the specified ID
@@ -384,19 +376,18 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: Product retrieved
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
-        '401':
+                $ref: "#/components/schemas/Product"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Product not found
-  /api/prov/v1/products:
     post:
       summary: Create a new product
       description: Creates a new product
@@ -412,19 +403,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: "#/components/schemas/Product"
       responses:
-        '201':
+        "201":
           description: Product created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
-        '401':
+                $ref: "#/components/schemas/Product"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-  /api/prov/v1/products/{product_id}:
     put:
       summary: Update a product
       description: Updates a product with the specified ID
@@ -445,21 +435,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: "#/components/schemas/Product"
       responses:
-        '200':
+        "200":
           description: Product updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Product'
-        '401':
+                $ref: "#/components/schemas/Product"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Product not found
-  /api/prov/v1/products/{product_id}:
     delete:
       summary: Delete a product
       description: Deletes a product with the specified ID
@@ -477,13 +466,13 @@ paths:
           schema:
             type: integer
       responses:
-        '204':
+        "204":
           description: Product deleted
-        '401':
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Product not found
   /api/prov/v2/customer-orders:
     get:
@@ -497,19 +486,48 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: List of customer orders
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CustomerOrder'
-        '401':
+                  $ref: "#/components/schemas/CustomerOrder"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-  /api/prov/v2/customer-orders/{order_id}:
+    post:
+      summary: Create a customer order
+      description: Creates a new customer order
+      operationId: createCustomerOrder
+      parameters:
+        - in: header
+          name: X-API-Key
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerOrderInput"
+      responses:
+        "201":
+          description: Customer order created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerOrder"
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Customer order not found
+  "/api/prov/v2/customer-orders/{order_id}":
     get:
       summary: Retrieve a customer order
       description: Retrieves a customer order with the specified ID
@@ -526,46 +544,15 @@ paths:
           schema:
             type: integer
       responses:
-        '200':
+        "200":
           description: Customer order details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerOrder'
-        '401':
+                $ref: "#/components/schemas/CustomerOrder"
+        "401":
           description: Unauthorized
-        '403':
+        "403":
           description: Forbidden
-        '404':
+        "404":
           description: Customer order not found
-  /api/prov/v2/customer-orders:
-    post:
-      summary: Create a customer order
-      description: Creates a new customer order
-      operationId: createCustomerOrder
-      parameters:
-        - in: header
-          name: X-API-Key
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CustomerOrderInput'
-      responses:
-        '201':
-          description: Customer order created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerOrder'
-        '401':
-          description: Unauthorized
-        '403':
-          description: Forbidden
-        '404':
-          description: Customer order not found
-  
